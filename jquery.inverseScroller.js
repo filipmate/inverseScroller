@@ -1,6 +1,6 @@
 ;(function ( $, window, document, undefined ) {
 
-    var pluginName = 'inverseSlider',
+    var pluginName = 'inverseScroller',
         defaults = {
     		idPrefix: 'slider_',
     		navigation: true,
@@ -9,7 +9,7 @@
     		changeHash: true
         };
 
-    function InverseSlider( element, options ) {
+    function inverseScroller( element, options ) {
         this.element = element;
         this.currentSlideIndex = 0;
         this.slidesCount = $('li', this.element).length;
@@ -22,7 +22,7 @@
         this.init();
     }
 
-    InverseSlider.prototype.init = function () {
+    inverseScroller.prototype.init = function () {
     	if ( this.options.navigation )
     	{
     		this.initNavigation();
@@ -35,7 +35,7 @@
 		}
     };
     
-    InverseSlider.prototype.initNavigation = function () {
+    inverseScroller.prototype.initNavigation = function () {
     	var $next = $(this.element).find(this.options.next);
 		if ( $next.length <= 0 ) {
 			$next = this.options.next;
@@ -59,7 +59,7 @@
 		});
     };
     
-    InverseSlider.prototype.setCurrentIndex = function (index) {
+    inverseScroller.prototype.setCurrentIndex = function (index) {
     	if ( index != this.currentSlideIndex ) {
     		this.currentSlideIndex = index;
     		this.invalidateNavigation();
@@ -89,7 +89,7 @@
     	}
     }
 
-    InverseSlider.prototype.invalidateNavigation = function () {
+    inverseScroller.prototype.invalidateNavigation = function () {
     	if ( this.currentSlideIndex == 0 )
     		this.options.prev.hide();
 		
@@ -103,7 +103,7 @@
 			this.options.next.show();
     };
     
-    InverseSlider.prototype.hashChangedHandler = function () {
+    inverseScroller.prototype.hashChangedHandler = function () {
     	//console.log('hashChanged');
     };
 
@@ -112,7 +112,7 @@
     $.fn[pluginName] = function ( options ) {
         return this.each(function () {
             if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, new InverseSlider( this, options ));
+                $.data(this, 'plugin_' + pluginName, new inverseScroller( this, options ));
             }
         });
     }
