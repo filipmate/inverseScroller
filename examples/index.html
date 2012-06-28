@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="de">
+<head>
+
+    <!-- TITLE -->
+    <title>inverseScroller DEMO</title>
+
+    <!-- META -->
+    <meta charset="utf-8" />
+	<script src="jquery-1.7.2.min.js"></script>
+	<script src="jquery.inverseScroller.js"></script>
+</head>
+<body>
+<style>
+	ul, li, div, body{margin: 0; padding: 0}
+	.viewport{width:100px; height:100px;overflow:hidden}
+	.viewport ul li{display:block; float:left; width:100px; height:100px}
+	#prev1, #next1, #scroller1{float:left;}
+	#prev1, #next1{width:30px;height:100px;background:#ffff00;cursor:pointer}
+</style>
+<div id="prev1"></div>
+<div id="scroller1" class="viewport">
+	<ul>
+		<li>lorem ipsum</li>
+		<li>lorem ipsum</li>
+		<li>lorem ipsum</li>
+		<li>lorem ipsum</li>
+		<li>lorem ipsum</li>
+	</ul>
+</div>
+<div id="next1"></div>
+<script>
+	$(document).ready(function(){
+		$('#scroller1').inverseScroller({next: '#next1', prev: '#prev1'});
+	});
+</script>
+</body>
+</html>
