@@ -9,29 +9,70 @@
     <meta charset="utf-8" />
 	<script src="jquery-1.7.2.min.js"></script>
 	<script src="jquery.inverseScroller.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
 <style>
 	ul, li, div, body{margin: 0; padding: 0}
-	.viewport{width:100px; height:100px;overflow:hidden}
-	.viewport ul li{display:block; float:left; width:100px; height:100px}
-	#prev1, #next1, #scroller1{float:left;}
-	#prev1, #next1{width:30px;height:100px;background:#ffff00;cursor:pointer}
+	.viewport{position:relative;}
+	.viewport ul li{display:block; float:left; width:300px; height:100px}
+	#scroller2.viewport{width:600px}
+	#prev1{left:150px}
+	#next1{right:150px}
+	
+	#prev3{top:-25px;left:320px;position:absolute}
+	#next3{bottom:-25px;left:320px;position:absolute}
 </style>
-<div id="prev1"></div>
-<div id="scroller1" class="viewport">
-	<ul>
-		<li>lorem ipsum</li>
-		<li>lorem ipsum</li>
-		<li>lorem ipsum</li>
-		<li>lorem ipsum</li>
-		<li>lorem ipsum</li>
-	</ul>
+<h1>Yet another SUPER scroller plugin!</h1>
+<h2>Horizontal</h2>
+<div class="scrollerContainer">
+	<div id="prev1" class="left"><span></span></div>
+	<div id="scroller1" class="viewport">
+		<ul style="width:10000px">
+			<li class="yellow">lorem ipsum</li>
+			<li class="red">lorem ipsum</li>
+			<li class="blue">lorem ipsum</li>
+			<li class="green">lorem ipsum</li>
+			<li class="violet">lorem ipsum</li>
+		</ul>
+	</div>
+	<div id="next1" class="right"><span></span></div>
 </div>
-<div id="next1"></div>
+<h2>Horizontal <i>step = 2</i></h2>
+<div class="scrollerContainer">
+	<div id="prev2" class="left"><span></span></div>
+	<div id="scroller2" class="viewport">
+		<ul  style="width:10000px">
+			<li class="green">lorem ipsum</li>
+			<li class="yellow">lorem ipsum</li>
+			<li class="red">lorem ipsum</li>
+			<li class="blue">lorem ipsum</li>
+			<li class="green">lorem ipsum</li>
+			<li class="yellow">lorem ipsum</li>
+			<li class="violet">lorem ipsum</li>
+		</ul>
+	</div>
+	<div id="next2" class="right"><span></span></div>
+</div>
+<h2>Vertical</h2>
+<div class="scrollerContainer">
+	<div id="prev3" class="up"><span></span></div>
+	<div id="scroller3" class="viewport">
+		<ul>
+			<li class="blue">lorem ipsum</li>
+			<li class="green">lorem ipsum</li>
+			<li class="violet">lorem ipsum</li>
+			<li class="yellow">lorem ipsum</li>
+			<li class="red">lorem ipsum</li>
+		</ul>
+	</div>
+	<div id="next3" class="down"><span></span></div>
+</div>
 <script>
 	$(document).ready(function(){
 		$('#scroller1').inverseScroller({next: '#next1', prev: '#prev1'});
+		$('#scroller2').inverseScroller({next: '#next2', prev: '#prev2', step: 2});
+		$('#scroller3').inverseScroller({next: '#next3', prev: '#prev3'});
 	});
 </script>
 </body>

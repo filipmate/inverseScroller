@@ -3,7 +3,6 @@
 
     var pluginName = 'inverseScroller',
         defaults = {
-    		idPrefix: 'slider_',
     		next: null,
     		prev: null,
     		changeHash: true,
@@ -11,21 +10,23 @@
 			vertical: false,
 			itemsSelector: 'li',
 			itemsContainerSelector: 'ul',
-			currentItemClass: 'current'
+			currentItemClass: 'current',
+			step: 1
         };
 
     function inverseScroller( element, options ) 
 	{
         this.element = element;
         this.currentSlideIndex = 0;
-        
+        this.positionSet = [];
+		this.lastPosition = {x: 0, y: 0, width: 0, height: 0};
         this.options = $.extend( {}, defaults, options);
 		
 		this.slidesCount = $(this.options.itemsSelector, this.element).length;
 		this.itemsContainer = $(this.options.itemsContainerSelector, this.element);
         this._defaults = defaults;
         this._name = pluginName;
-
+		this.items = $(this.options.itemsSelector, this.element);
         this.init();
     }
 
@@ -48,12 +49,21 @@
 		}
 		else
 		{
-			this.itemsContainer.width(0);
-			
-			var items = $(this.options.itemsSelector, this.element);
-			for ( var i = 0; i < items.length; i++ )
+			for ( var i = 0; i < this.items.length; i++ )
 			{
-				this.itemsContainer.width(this.itemsContainer.width() + $(items[i]).width());
+				console.log($(this.items[i]).position());
+				console.log(this.items[i].offsetLeft);
+				this.positionSet[i] = {x: this.items[i].offsetLeft, y: this.items[i].offsetTop, width: $(this.items[i]).width(), height: $(this.items[i]).height()};
+				if ( this.positionSet[i].x  + this.positionSet[i].width > this.lastPosition.x + this.lastPosition.width )
+				{
+					this.lastPosition.x = this.positionSet[i].x;
+					this.lastPosition.width = this.positionSet[i].width;
+				}
+				if ( this.positionSet[i].y + this.positionSet[i].height > this.lastPosition.y + this.lastPosition.height )
+				{
+					this.lastPosition.y = this.positionSet[i].y;
+					this.lastPosition.height = this.positionSet[i].height;
+				}
 			}
 		}
     	if ( this.options.inverseElement && this.options.inverseElement.length > 0 )
@@ -70,36 +80,32 @@
 		var This = this, mainElement = this.element, itemsSelector = this.options.itemsSelector, currentItemClass = this.options.currentItemClass;
 
 		this.options.next.bind('click', function(e) {
-			This.setCurrentIndex($(itemsSelector, $(mainElement)).index($(itemsSelector + '.' + currentItemClass, mainElement)) + 1);
+			This.setCurrentIndex($(itemsSelector, $(mainElement)).index($(itemsSelector + '.' + currentItemClass, mainElement)) + This.options.step);
 		});
 		this.options.prev.bind('click', function(e) {
-			This.setCurrentIndex($(itemsSelector, $(mainElement)).index($(itemsSelector + '.' + currentItemClass, mainElement)) - 1);
+			This.setCurrentIndex($(itemsSelector, $(mainElement)).index($(itemsSelector + '.' + currentItemClass, mainElement)) - This.options.step);
 		});
     };
     
     inverseScroller.prototype.setCurrentIndex = function (index) {
+		if ( index < 0 ) {
+			index = 0;
+		}
+		if ( index > this.items.length ) {
+			index = this.items.length;
+		}
+		
     	if ( index != this.currentSlideIndex ) {
     		this.currentSlideIndex = index;
     		this.invalidateNavigation();
-    		
     		$(this.options.itemsSelector + '.' + this.options.currentItemClass, this.element).removeClass('current');
     		$(this.options.itemsSelector, this.element).eq(index).addClass(this.options.currentItemClass);
-    		if ( this.options.vertical )
-			{
-			}
-			else
-			{				
-				var items = $(this.options.itemsSelector, this.element), left = 0;
-				for ( var i = 0; i < index; i++ )
-				{
-					left += $(items[i]).width();
-				}
-				$(this.element).stop(true, false).animate({scrollLeft: left}, { duration: 1000, easing: 'swing' });
-			}
+			$(this.element).stop(true, false).animate({scrollLeft: this.positionSet[index].x, scrollTop: this.positionSet[index].y}, { duration: 300, easing: 'swing' });
     	}
     }
 
     inverseScroller.prototype.invalidateNavigation = function () {
+	
     	if ( this.currentSlideIndex == 0 )
     		this.options.prev.hide();
 		

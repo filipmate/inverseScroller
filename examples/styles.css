@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/* CSS File:reset.css */
+body{font:14px/16px 'Open Sans',Arial,Helvetica,sans-serif; color:#252a35; margin:0;background-color:#fff}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,form{display:block}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video,input::-moz-focus-inner{margin:0; padding:0; border:0; vertical-align:baseline}
+a,a:visited{text-decoration:none; cursor:pointer; color:#FFF}
+a:hover{text-decoration:none}
+:focus{outline:0}
+img{font-size:9px; vertical-align:middle}
+ol,ul{list-style:none}
+table{border-collapse:separate; border-spacing:0}
+caption,th,td{text-align:left}
+input,select,textarea{font:12px Arial,Helvetica,sans-serif; outline:0}
+label,input[type="submit"]{cursor:pointer}
+textarea{line-height:1.25}
+blockquote:before,blockquote:after,q:before,q:after{content:''; content:none}
+blockquote,q{quotes:"" ""}
+abbr[title],dfn[title]{border-bottom:1px dotted #ddd; cursor:help}
+
+.clear:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.scrollerContainer{width:700px;margin: 0 auto;position:relative;}
+.left span{border-color: transparent #fff transparent transparent;border-style:solid;border-width:20px;width:0;height:0;display:block;margin-top:10px;margin-left:-5px}
+.left {position: absolute;left:5px;width:60px;height:60px;background:#252a35;cursor:pointer;border-radius:30px;top:20px}
+
+.right span{border-color: transparent transparent transparent #fff;border-style:solid;border-width:20px;width:0;height:0;display:block;margin-top:10px;margin-left:25px}
+.right {position: absolute;right:5px;width:60px;height:60px;background:#252a35;cursor:pointer;border-radius:30px;top:20px}
+
+.up span{border-color: transparent transparent #fff transparent;border-style:solid;border-width:20px;width:0;height:0;display:block;margin-top:-5px;margin-left:10px}
+.up {position: absolute;left:5px;width:60px;height:60px;background:#252a35;cursor:pointer;border-radius:30px;}
+
+.down span{border-color: #fff transparent transparent transparent;border-style:solid;border-width:20px;width:0;height:0;display:block;margin-top:25px;margin-left:10px}
+.down {position: absolute;left:5px;width:60px;height:60px;background:#252a35;cursor:pointer;border-radius:30px;}
+
+.right, .left, .up, .down{z-index:999;}
+.left:hover, .right:hover{top:21px}
+
+.viewport{border: 3px dashed #252a35;border-radius: 5px;width:300px; height:100px;overflow:hidden;margin:0 auto}
+.viewport ul li{background: no-repeat center center}
+.viewport ul li.yellow{background:url('img/bg_yellow.png')}
+.viewport ul li.red{background:url('img/bg_red.png')}
+.viewport ul li.green{background:url('img/bg_green.png')}
+.viewport ul li.blue{background:url('img/bg_blue.png')}
+.viewport ul li.violet{background:url('img/bg_violet.png')}
+h1, h2{margin:30px;text-align:center;}
