@@ -7,6 +7,7 @@
 
     <!-- META -->
     <meta charset="utf-8" />
+	
 	<script src="jquery-1.7.2.min.js"></script>
 	<script src="jquery.inverseScroller.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles.css" />
@@ -38,7 +39,7 @@
 	</div>
 	<div id="next1" class="right"><span></span></div>
 </div>
-<h2>Horizontal <i>step = 2</i></h2>
+<h2>Horizontal <i>step = 2, startPosition = 2</i></h2>
 <div class="scrollerContainer">
 	<div id="prev2" class="left"><span></span></div>
 	<div id="scroller2" class="viewport">
@@ -54,25 +55,40 @@
 	</div>
 	<div id="next2" class="right"><span></span></div>
 </div>
-<h2>Vertical</h2>
+<h2>Vertical <i>inverse = true</i></h2>
 <div class="scrollerContainer">
 	<div id="prev3" class="up"><span></span></div>
 	<div id="scroller3" class="viewport">
 		<ul>
-			<li class="blue">lorem ipsum</li>
-			<li class="green">lorem ipsum</li>
-			<li class="violet">lorem ipsum</li>
-			<li class="yellow">lorem ipsum</li>
-			<li class="red">lorem ipsum</li>
+			<li class="blue">1</li>
+			<li class="green">2</li>
+			<li class="violet">3</li>
+			<li class="yellow">4</li>
+			<li class="red">5</li>
 		</ul>
 	</div>
 	<div id="next3" class="down"><span></span></div>
 </div>
+<h2>Carousel</h2>
+<div class="scrollerContainer">
+	<div id="prev4" class="left"><span></span></div>
+	<div id="scroller4" class="viewport">
+		<ul>
+			<li class="blue">1</li>
+			<li class="green">2</li>
+			<li class="violet">3</li>
+			<li class="yellow">4</li>
+			<li class="red">5</li>
+		</ul>
+	</div>
+	<div id="next4" class="right"><span></span></div>
+</div>
 <script>
 	$(document).ready(function(){
 		$('#scroller1').inverseScroller({next: '#next1', prev: '#prev1'});
-		$('#scroller2').inverseScroller({next: '#next2', prev: '#prev2', step: 2});
-		$('#scroller3').inverseScroller({next: '#next3', prev: '#prev3'});
+		$('#scroller2').inverseScroller({next: '#next2', prev: '#prev2', step: 2, startPosition: 2});
+		$('#scroller3').inverseScroller({next: '#next3', prev: '#prev3', inverse: true});
+		$('#scroller4').inverseScroller({next: '#next4', prev: '#prev4', carousel: true, animateOnHover: true});
 	});
 </script>
 </body>
